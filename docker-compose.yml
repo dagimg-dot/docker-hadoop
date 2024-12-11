@@ -5,7 +5,7 @@ services:
     container_name: namenode
     hostname: namenode
     environment:
-      - CLUSTER_NAME=hive-3.1.x
+      - CLUSTER_NAME=ceiabd-cluster
     env_file:
       - ./conf/core.env
       - ./conf/yarn-remote.env
