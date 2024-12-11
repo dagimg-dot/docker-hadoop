@@ -113,3 +113,8 @@ Este repositorio contiene un archivo `docker-compose.yml` que despliega un clús
 ## Créditos
 Este clúster utiliza imágenes Docker mantenidas por [Tim Veil](https://hub.docker.com/u/timveil).
 
+## Enlaces
+
+- https://www.writecode.es/2019-02-25-cluster_hadoop_docker/
+- https://www.writecode.es/2019-03-08-cluster-hadoop-hive-docker/
+- https://www.writecode.es/2019-04-30-cluster-hadoop-spark-docker/
