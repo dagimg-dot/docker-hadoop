@@ -4,11 +4,13 @@ shared/*
 # ARchivos de Prueba
 !shared/
 !shared/input/
-!shared/input/quijote.txt
+!shared/input/test-mapreduce.txt
+!shared/input/test-hive.csv
 !shared/test-mapreduce.sh
+!shared/test-hive.sh
 
 # Carpeta Data
-data/
+data/zeppelin/notebooks
 
 # VENV
 docs/venv/

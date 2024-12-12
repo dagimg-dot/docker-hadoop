@@ -138,6 +138,23 @@ services:
     networks:
       - hadoop_network
 
+  zeppelin:
+    image: apache/zeppelin:0.11.2
+    container_name: zeppelin
+    ports:
+      - "8080:8080"
+    environment:
+      - ZEPPELIN_HIVE_ENABLED=true
+      - ZEPPELIN_HIVE_DRIVER="org.apache.hive.jdbc.HiveDriver"
+      - ZEPPELIN_HIVE_URL="jdbc:hive2://hiveserver:10000/default"
+    volumes:
+      - ./data/zeppelin/notebooks:/zeppelin/notebook
+      - ./data/zeppelin/drivers:/zeppelin/drivers
+    depends_on:
+      - hiveserver
+    networks:
+      - hadoop_network
+
 networks:
   hadoop_network:
     driver: bridge
