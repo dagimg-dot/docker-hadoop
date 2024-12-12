@@ -5,6 +5,7 @@ shared/*
 !shared/
 !shared/input/
 !shared/input/quijote.txt
+!shared/test-mapreduce.sh
 
 # Carpeta Data
 data/
