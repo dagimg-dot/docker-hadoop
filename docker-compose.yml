@@ -60,6 +60,8 @@ services:
       - ./conf/yarn-resource-manager.env
     ports:
       - "8088:8088"
+    volumes:
+      - ./shared:/shared
     networks:
       - hadoop_network
 

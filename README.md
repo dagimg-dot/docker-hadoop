@@ -3,8 +3,10 @@
 Este repositorio contiene un archivo `docker-compose.yml` que despliega un clúster Hadoop completo utilizando contenedores Docker. A continuación, se explican los servicios incluidos, sus propósitos y configuraciones.
 
 - [INTRODUCCIÓN](#introducción)
-- [Red](#red)
 - [Cómo usar este archivo](#cómo-usar-este-archivo)
+- [Arquitectura](#arquitectura)
+  - [Vista Global](#vista-global)
+  - [Red](#red)
 - [Servicios](#servicios)
   - [1. **Namenode**](#1-namenode)
   - [2. **Datanode-1**](#2-datanode-1)
@@ -15,15 +17,13 @@ Este repositorio contiene un archivo `docker-compose.yml` que despliega un clús
   - [7. **HiveServer**](#7-hiveserver)
   - [8. **Metastore**](#8-metastore)
   - [9. **Metastore DB**](#9-metastore-db)
+- [PRUEBAS](#pruebas)
+  - [Ejecución de Mapreduce](#ejecución-de-mapreduce)
 - [TO-DO](#to-do)
 - [Créditos](#créditos)
 - [Enlaces](#enlaces)
-
-
-# Red
-- **Red:** `hadoop_network`
-  - Tipo: `bridge`.
-  - Todos los servicios comparten esta red para facilitar la comunicación interna.
+  - [Puertos de Hadoop:](#puertos-de-hadoop)
+  - [Paso a Paso](#paso-a-paso)
 
 # Cómo usar este archivo
 
@@ -65,6 +65,17 @@ resourcemanager   timveil/docker-hadoop-resourcemanager:3.2.x     "/entrypoint.s
 ```
 
 Es importante que los servicios `namenode`, `datanode`, y `resourcemanager` estén funcionando correctamente antes de ejecutar tareas en el clúster.
+
+# Arquitectura
+
+## Vista Global
+
+![Diagrama](./docs/hadoop_+_hive.png)
+
+## Red
+- **Red:** `hadoop_network`
+  - Tipo: `bridge`.
+  - Todos los servicios comparten esta red para facilitar la comunicación interna.
 
 
 # Servicios
@@ -212,6 +223,21 @@ Es importante que los servicios `namenode`, `datanode`, y `resourcemanager` est�
   - No tiene un enlace web expuesto directamente.
 
 
+# PRUEBAS
+
+## Ejecución de Mapreduce
+
+Conectados al resourcemanager:
+
+```bash
+# Vamos al directorio compartido
+cd /shared
+# Damos permisos de ejecución al archivo
+chmod +x test-mapreduce.sh
+# Ejecutamos el archivo
+./test-mapreduce.sh
+```
+
 # TO-DO
 
 El anterior stack tiene puntos de mejora pendientes:
@@ -224,6 +250,12 @@ El anterior stack tiene puntos de mejora pendientes:
 Este clúster utiliza imágenes Docker mantenidas por [Tim Veil](https://hub.docker.com/u/timveil).
 
 # Enlaces
+
+## Puertos de Hadoop:
+
+- https://www.stefaanlippens.net/hadoop-3-default-ports.html
+
+## Paso a Paso
 
 - https://www.writecode.es/2019-02-25-cluster_hadoop_docker/
 - https://www.writecode.es/2019-03-08-cluster-hadoop-hive-docker/

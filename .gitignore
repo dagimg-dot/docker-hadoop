@@ -1,5 +1,13 @@
 # Carpeta Shared
-shared/
+shared/*
+
+# ARchivos de Prueba
+!shared/
+!shared/input/
+!shared/input/quijote.txt
 
 # Carpeta Data
 data/
+
+# VENV
+docs/venv/
