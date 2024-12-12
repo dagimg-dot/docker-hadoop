@@ -238,6 +238,19 @@ chmod +x test-mapreduce.sh
 ./test-mapreduce.sh
 ```
 
+## Ejecución de Hive
+
+Conectados al hiveserver:
+
+```bash
+# Vamos al directorio compartido
+cd /shared
+# Damos permisos de ejecución al archivo
+chmod +x test-mapreduce.sh
+# Ejecutamos el archivo
+./test-mapreduce.sh
+```
+
 # TO-DO
 
 El anterior stack tiene puntos de mejora pendientes:
