@@ -15,8 +15,7 @@ conf/drivers/hive/*
 !shared/test-titanic.sh
 
 # Carpeta Data
-data/zeppelin/notebooks/*
-!data/zeppelin/notebooks/Notebook Hive_2KEKMZEAK.zpln
+data/*
 
 # VENV
 docs/venv/
