@@ -6,8 +6,10 @@ shared/*
 !shared/input/
 !shared/input/test-mapreduce.txt
 !shared/input/test-hive.csv
+!shared/input/test-titanic.csv
 !shared/test-mapreduce.sh
 !shared/test-hive.sh
+!shared/test-titanic.sh
 
 # Carpeta Data
 data/zeppelin/notebooks
