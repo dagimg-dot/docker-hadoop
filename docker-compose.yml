@@ -12,7 +12,6 @@ services:
     ports:
       - "9870:9870"
     volumes:
-      #- ./data/namenode:/data/namenode
       - ./shared:/shared
     networks:
       - hadoop_network
@@ -28,8 +27,6 @@ services:
       - ./conf/yarn-remote.env
     ports:
       - "9864:9864"
-    #volumes:
-      #- ./data/datanode-1:/data/datanode
     networks:
       - hadoop_network
   
@@ -44,8 +41,6 @@ services:
       - ./conf/yarn-remote.env
     ports:
       - "9865:9864"
-    #volumes:
-      #- ./data/datanode-2:/data/datanode
     networks:
       - hadoop_network
 
@@ -149,7 +144,7 @@ services:
     volumes:
       - ./data/zeppelin/notebooks:/opt/zeppelin/notebook
       - ./conf/add-interpreter.sh:/add-interpreter.sh
-      - ./conf/drivers:/opt/zeppelin/local-repo
+      - ./conf/drivers:/zeppelin/jars
     depends_on:
       - hiveserver
     networks:

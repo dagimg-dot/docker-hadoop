@@ -147,14 +147,14 @@ RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST http://${ZEPPELIN_HOST
     }
   },
   "dependencies": [
-    { "groupArtifactVersion": "/opt/zeppelin/local-repo/curator-client-5.7.1.jar", "local": true },
-    { "groupArtifactVersion": "/opt/zeppelin/local-repo/hadoop-common-3.4.1.jar", "local": true },
-    { "groupArtifactVersion": "/opt/zeppelin/local-repo/hive-common-3.1.3.jar", "local": true },
-    { "groupArtifactVersion": "/opt/zeppelin/local-repo/hive-exec-3.1.3.jar", "local": true },
-    { "groupArtifactVersion": "/opt/zeppelin/local-repo/hive-jdbc-3.1.3.jar", "local": true },
-    { "groupArtifactVersion": "/opt/zeppelin/local-repo/hive-service-3.1.3.jar", "local": true },
-    { "groupArtifactVersion": "/opt/zeppelin/local-repo/libthrift-0.20.0.jar", "local": true },
-    { "groupArtifactVersion": "/opt/zeppelin/local-repo/httpcore-4.4.16.jar", "local": true }
+    { "groupArtifactVersion": "/zeppelin/jars/curator-client-5.7.1.jar", "local": true },
+    { "groupArtifactVersion": "/zeppelin/jars/hadoop-common-3.4.1.jar", "local": true },
+    { "groupArtifactVersion": "/zeppelin/jars/hive-common-3.1.3.jar", "local": true },
+    { "groupArtifactVersion": "/zeppelin/jars/hive-exec-3.1.3.jar", "local": true },
+    { "groupArtifactVersion": "/zeppelin/jars/hive-jdbc-3.1.3.jar", "local": true },
+    { "groupArtifactVersion": "/zeppelin/jars/hive-service-3.1.3.jar", "local": true },
+    { "groupArtifactVersion": "/zeppelin/jars/libthrift-0.20.0.jar", "local": true },
+    { "groupArtifactVersion": "/zeppelin/jars/httpcore-4.4.16.jar", "local": true }
   ],
   "option": {
     "remote": true,
