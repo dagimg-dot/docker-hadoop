@@ -141,14 +141,15 @@ services:
   zeppelin:
     image: apache/zeppelin:0.11.2
     container_name: zeppelin
+    command: /bin/bash -c "/add-interpreter.sh & /opt/zeppelin/bin/zeppelin.sh"
     ports:
       - "8080:8080"
     environment:
       - ZEPPELIN_HIVE_ENABLED=true
     volumes:
-      #- ./data/zeppelin/interpreter.json:/opt/zeppelin/conf/interpreter.json
       - ./data/zeppelin/notebooks:/opt/zeppelin/notebook
-      - ./data/zeppelin/drivers:/zeppelin/drivers
+      - ./conf/add-interpreter.sh:/add-interpreter.sh
+      - ./conf/drivers:/opt/zeppelin/local-repo
     depends_on:
       - hiveserver
     networks:
