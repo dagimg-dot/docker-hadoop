@@ -1,7 +1,10 @@
 # Carpeta Shared
 shared/*
 
-# ARchivos de Prueba
+# Drivers
+conf/drivers/hive/*
+
+# Archivos de Prueba
 !shared/
 !shared/input/
 !shared/input/test-mapreduce.txt
@@ -12,7 +15,8 @@ shared/*
 !shared/test-titanic.sh
 
 # Carpeta Data
-data/zeppelin/notebooks
+data/zeppelin/notebooks/*
+!data/zeppelin/notebooks/Notebook Hive_2KEKMZEAK.zpln
 
 # VENV
 docs/venv/
