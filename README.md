@@ -19,9 +19,11 @@ Este repositorio contiene un archivo `docker-compose.yml` que despliega un clús
   - [9. **Metastore DB**](#9-metastore-db)
 - [PRUEBAS](#pruebas)
   - [Ejecución de Mapreduce](#ejecución-de-mapreduce)
+  - [Ejecución de Hive](#ejecución-de-hive)
 - [TO-DO](#to-do)
 - [Créditos](#créditos)
 - [Enlaces](#enlaces)
+  - [Creación de Imágenes con Docker](#creación-de-imágenes-con-docker)
   - [Puertos de Hadoop:](#puertos-de-hadoop)
   - [Paso a Paso](#paso-a-paso)
 
@@ -263,6 +265,10 @@ El anterior stack tiene puntos de mejora pendientes:
 Este clúster utiliza imágenes Docker mantenidas por [Tim Veil](https://hub.docker.com/u/timveil).
 
 # Enlaces
+
+## Creación de Imágenes con Docker
+
+- https://desarrollofront.medium.com/las-10-instrucciones-imprescindibles-para-crear-un-dockerfile-bb439ff836d9
 
 ## Puertos de Hadoop:
 
