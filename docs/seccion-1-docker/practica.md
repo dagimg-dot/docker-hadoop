@@ -1,10 +1,10 @@
-# Práctica
+# Práctica 1a. Creación de Imagen con Dockerfile
 
 ## Crear el Dockerfile
 
 Crear un archivo `Dockerfile` con el siguiente contenido:
 
-```
+```bash
 FROM nginx:alpine
 COPY ./index.html /usr/share/nginx/html
 EXPOSE 80
@@ -14,7 +14,7 @@ EXPOSE 80
 
 En la ruta donde está el  `Dockerfile` anterior, ejecutar:
 
-```
+```bash
 docker build -t mi_servidor:1.0 .
 ```
 
@@ -24,7 +24,7 @@ Ojo, el . del final es importante.
 
 Ahora con la imagen creada, ejecutamos un contenedor. Para ello en esa ruta tecleamos:
 
-```
+```bash
 docker run -p 80:80 mi_servidor:1.0
 ```
 
@@ -34,7 +34,7 @@ Veremos el log del contenedor y se quedará el proceso corriendo, para salir, pu
 
 Si no queremos que nos bloquee la terminal, podemos correr el contenedor en segundo plano, para ello añadimos el -d
 
-```
+```bash
 docker run -d -p 80:80 mi_servidor:1.0
 ```
 
@@ -44,7 +44,7 @@ Ahora la terminal no se queda ocupada.
 
 Para ver una lista de contenedores corriendo, introducimos:
 
-```
+```bash
 docker ps
 ```
 
@@ -52,6 +52,32 @@ docker ps
 
 Para finalizar la ejecución de un contenedor, lo hacemos con:
 
-```
+```bash
 docker stop <CONTAINER_ID> | <CONTAINER_NAME>
+```
+
+# Práctica 1b. Correr un contenedor con imagen de Docker Hub.
+
+## Arrancar el contenedor
+
+```bash
+docker run ubuntu
+```
+
+## Arrancar el contenedor en modo interactivo
+
+```bash
+docker run -it ubuntu
+```
+
+## Podemos ver que estamos dentro de un Linux
+
+```bash
+cat /etc/os_release
+```
+
+## Terminamos la ejecución con exit.
+
+```bash
+exit
 ```
