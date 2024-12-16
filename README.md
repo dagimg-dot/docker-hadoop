@@ -26,6 +26,7 @@ Este repositorio contiene un archivo `docker-compose.yml` que despliega un clús
   - [Creación de Imágenes con Docker](#creación-de-imágenes-con-docker)
   - [Puertos de Hadoop:](#puertos-de-hadoop)
   - [Paso a Paso](#paso-a-paso)
+  - [Curso Completo](#curso-completo)
 
 # Cómo usar este archivo
 
@@ -279,3 +280,7 @@ Este clúster utiliza imágenes Docker mantenidas por [Tim Veil](https://hub.doc
 - https://www.writecode.es/2019-02-25-cluster_hadoop_docker/
 - https://www.writecode.es/2019-03-08-cluster-hadoop-hive-docker/
 - https://www.writecode.es/2019-04-30-cluster-hadoop-spark-docker/
+
+## Curso Completo
+
+- https://www.youtube.com/watch?v=CV_Uf3Dq-EU

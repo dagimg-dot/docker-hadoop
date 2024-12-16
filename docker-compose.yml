@@ -12,7 +12,7 @@ services:
     ports:
       - "9870:9870"
     volumes:
-      - ./shared:/shared
+      - shared-data:/shared
     networks:
       - hadoop_network
 
@@ -56,7 +56,7 @@ services:
     ports:
       - "8088:8088"
     volumes:
-      - ./shared:/shared
+      - shared-data:/shared
     networks:
       - hadoop_network
 
@@ -102,7 +102,7 @@ services:
       - "10000:10000"
       - "10002:10002"
     volumes:
-      - ./shared:/shared
+      - shared-data:/shared
     networks:
       - hadoop_network
 
@@ -118,7 +118,7 @@ services:
       - ./conf/hive.env
       - ./conf/metastore.env
     volumes:
-      - ./shared:/shared
+      - shared-data:/shared
     networks:
       - hadoop_network
 
@@ -129,27 +129,41 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./shared:/shared
+      - shared-data:/shared
     networks:
       - hadoop_network
 
-  zeppelin:
-    image: apache/zeppelin:0.11.2
-    container_name: zeppelin
-    command: /bin/bash -c "/add-interpreter.sh & /opt/zeppelin/bin/zeppelin.sh"
-    ports:
-      - "8080:8080"
-    environment:
-      - ZEPPELIN_HIVE_ENABLED=true
-    volumes:
-      - ./data/zeppelin/notebooks:/opt/zeppelin/notebook
-      - ./conf/add-interpreter.sh:/add-interpreter.sh
-      - ./conf/drivers:/zeppelin/jars
-    depends_on:
-      - hiveserver
-    networks:
-      - hadoop_network
+  # zeppelin:
+  #   image: apache/zeppelin:0.11.2
+  #   container_name: zeppelin
+  #   command: /bin/bash -c "/add-interpreter.sh & /opt/zeppelin/bin/zeppelin.sh"
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - ZEPPELIN_HIVE_ENABLED=true
+  #   volumes:
+  #     - zeppelin-notebooks:/opt/zeppelin/notebook
+  #     - ./conf/add-interpreter.sh:/add-interpreter.sh
+  #     - ./conf/drivers:/zeppelin/jars
+  #   depends_on:
+  #     - hiveserver
+  #   networks:
+  #     - hadoop_network
 
 networks:
   hadoop_network:
     driver: bridge
+
+volumes:
+  shared-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./shared
+  zeppelin-notebooks:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/zeppelin/notebooks
