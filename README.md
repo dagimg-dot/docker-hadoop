@@ -4,9 +4,6 @@ Este repositorio contiene un archivo `docker-compose.yml` que despliega un clús
 
 - [INTRODUCCIÓN](#introducción)
 - [Cómo usar este archivo](#cómo-usar-este-archivo)
-- [Arquitectura](#arquitectura)
-  - [Vista Global](#vista-global)
-  - [Red](#red)
 - [Servicios](#servicios)
   - [1. **Namenode**](#1-namenode)
   - [2. **Datanode-1**](#2-datanode-1)
@@ -68,18 +65,6 @@ resourcemanager   timveil/docker-hadoop-resourcemanager:3.2.x     "/entrypoint.s
 ```
 
 Es importante que los servicios `namenode`, `datanode`, y `resourcemanager` estén funcionando correctamente antes de ejecutar tareas en el clúster.
-
-# Arquitectura
-
-## Vista Global
-
-![Diagrama](./docs/hadoop_+_hive.png)
-
-## Red
-- **Red:** `hadoop_network`
-  - Tipo: `bridge`.
-  - Todos los servicios comparten esta red para facilitar la comunicación interna.
-
 
 # Servicios
 
