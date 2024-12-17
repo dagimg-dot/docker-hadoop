@@ -48,7 +48,7 @@ Para ver una lista de contenedores corriendo, introducimos:
 docker ps
 ```
 
-## Terminar un contenedor
+## Parar un contenedor
 
 Para finalizar la ejecución de un contenedor, lo hacemos con:
 
