@@ -1,0 +1,26 @@
+services:
+  mongodb:
+    image: mongo:5.0
+    container_name: "${COMPOSE_PROJECT_NAME}-mongodb"
+    environment:
+        - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASS}
+        - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongodb:/data
+  
+  mongo-express:
+    container_name: "${COMPOSE_PROJECT_NAME}-mongoexpress"
+    image: mongo-express:latest
+    ports:
+      - "8081:8081"
+    links:
+      - mongodb
+    environment:
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGODB_PASS}
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGODB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_PASS}
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_USER}
+      ME_CONFIG_MONGODB_URL: "mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongodb:27017/?authSource=admin"

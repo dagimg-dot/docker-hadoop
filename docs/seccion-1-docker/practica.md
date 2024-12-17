@@ -1,4 +1,4 @@
-# Práctica 1a. Creación de Imagen con Dockerfile
+# Práctica 1. Creación de Imagen con Dockerfile
 
 ## Crear el Dockerfile
 
@@ -54,30 +54,4 @@ Para finalizar la ejecución de un contenedor, lo hacemos con:
 
 ```bash
 docker stop <CONTAINER_ID> | <CONTAINER_NAME>
-```
-
-# Práctica 1b. Correr un contenedor con imagen de Docker Hub.
-
-## Arrancar el contenedor
-
-```bash
-docker run ubuntu
-```
-
-## Arrancar el contenedor en modo interactivo
-
-```bash
-docker run -it ubuntu
-```
-
-## Podemos ver que estamos dentro de un Linux
-
-```bash
-cat /etc/os_release
-```
-
-## Terminamos la ejecución con exit.
-
-```bash
-exit
 ```
