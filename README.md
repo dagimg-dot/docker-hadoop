@@ -228,12 +228,30 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 
 # TESTING
 
+- Everthing you will do is inside the namenode container because hadoop is installed there. So, you need to login to the namenode container.
+
+## Check If everything is working correctly
+
+Login to the namenode container
+
+```bash
+docker exec -it namenode bash
+```
+
+Run the following command to check if hadoop is working correctly
+
+```bash
+hadoop version
+```
+
+> Now you are all set to run mapreduce and hive queries.
+
 ## Running Mapreduce
 
 Connected to the ResourceManager:
 
 ```bash
-# Navigate to the shared directory
+# Navigate to the shared directory (inside the namenode container)
 cd /shared
 # Grant execution permissions to the file
 chmod +x test-mapreduce.sh
@@ -246,7 +264,7 @@ chmod +x test-mapreduce.sh
 Connected to the HiveServer:
 
 ```bash
-# Navigate to the shared directory
+# Navigate to the shared directory (inside the namenode container)
 cd /shared
 # Grant execution permissions to the file
 chmod +x test-hive.sh
