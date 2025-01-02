@@ -1,8 +1,8 @@
-# Práctica 3. Creación de Stack con Docker Compose
+# Practice 3: Creating a Stack with Docker Compose
 
-## Crear el archivo de entorno
+## Create the environment file
 
-Crear un archivo `.env` con el siguiente contenido:
+Create a `.env` file with the following content:
 
 ```bash
 # Docker
@@ -15,17 +15,17 @@ MONGODB_USER=user
 MONGODB_PASS=pass
 ```
 
-## Crear el archivo docker-compose.yml
+## Create the `docker-compose.yml` file
 
-Creamos un archivo `docker-compose.yml` al mismo nivel que el archivo `.env` de antes.
+Create a `docker-compose.yml` file in the same directory as the `.env` file.
 
-### Añadir la imagen de MongoDB
+### Add the MongoDB image
 
-Editamos el archivo anterior y añadimos:
+Edit the file and add the following:
 
 ```bash
 services:
-  
+
   mongodb:
     image: mongo:5.0
     container_name: "${COMPOSE_PROJECT_NAME}-mongodb"
@@ -39,17 +39,17 @@ services:
       - ./data/mongodb:/data
 ```
 
-En ese directorio, lanzamos:
+In that directory, run the following command:
 
 ```bash
 docker-compose up -d
 ```
 
-Ahora tenemos un servidor de MongoDB corriendo en nuestro equipo.
+Now we have a MongoDB server running on our machine.
 
-### Añadir Mongo Express
+### Add Mongo Express
 
-Ahora editamos el archivo anterior, y añadimos debajo del servicio anterior:
+Next, edit the `docker-compose.yml` file again and add the following section below the MongoDB service:
 
 ```bash
   mongo-express:
@@ -67,10 +67,10 @@ Ahora editamos el archivo anterior, y añadimos debajo del servicio anterior:
       ME_CONFIG_MONGODB_URL: "mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongodb:27017/?authSource=admin"
 ```
 
-En ese directorio, lanzamos:
+In the same directory, run the following command:
 
 ```bash
 docker-compose up -d
 ```
 
-Ahora tenemos un servidor de MongoDB corriendo en nuestro equipo y además si vamos a (http:localhost:8081)[http:localhost:8081] y nos identificamos con `user` y `pass`, veremos una interfaz sencilla de administración.
+Now we have a MongoDB server running on our machine. Additionally, if we navigate to [http://localhost:8081](http://localhost:8081) and log in with `user` and `pass`, we will see a simple administration interface.

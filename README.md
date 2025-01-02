@@ -1,10 +1,10 @@
-# INTRODUCCIÓN
+# INTRODUCTION
 
-Este repositorio contiene un archivo `docker-compose.yml` que despliega un clúster Hadoop completo utilizando contenedores Docker. A continuación, se explican los servicios incluidos, sus propósitos y configuraciones.
+This repository contains a `docker-compose.yml` file that deploys a complete Hadoop cluster using Docker containers. Below, the included services, their purposes, and configurations are explained.
 
-- [INTRODUCCIÓN](#introducción)
-- [Cómo usar este archivo](#cómo-usar-este-archivo)
-- [Servicios](#servicios)
+- [INTRODUCTION](#introduction)
+- [How to Use This File](#how-to-use-this-file)
+- [Services](#services)
   - [1. **Namenode**](#1-namenode)
   - [2. **Datanode-1**](#2-datanode-1)
   - [3. **Datanode-2**](#3-datanode-2)
@@ -14,26 +14,26 @@ Este repositorio contiene un archivo `docker-compose.yml` que despliega un clús
   - [7. **HiveServer**](#7-hiveserver)
   - [8. **Metastore**](#8-metastore)
   - [9. **Metastore DB**](#9-metastore-db)
-- [PRUEBAS](#pruebas)
-  - [Ejecución de Mapreduce](#ejecución-de-mapreduce)
-  - [Ejecución de Hive](#ejecución-de-hive)
+- [TESTING](#testing)
+  - [Running Mapreduce](#running-mapreduce)
+  - [Running Hive](#running-hive)
 - [TO-DO](#to-do)
-- [Créditos](#créditos)
-- [Enlaces](#enlaces)
-  - [Creación de Imágenes con Docker](#creación-de-imágenes-con-docker)
-  - [Puertos de Hadoop:](#puertos-de-hadoop)
-  - [Paso a Paso](#paso-a-paso)
-  - [Curso Completo](#curso-completo)
+- [Credits](#credits)
+- [Links](#links)
+  - [Building Docker Images](#building-docker-images)
+  - [Hadoop Ports](#hadoop-ports)
+    - [Step by Step](#step-by-step)
+  - [Complete Course](#complete-course)
 
-# Cómo usar este archivo
+# How to Use This File
 
-1. Clona el repositorio y navega al directorio donde se encuentra el archivo `docker-compose.yml`.
-2. Asegúrate de que los archivos de configuración mencionados (`.env`) estén correctamente configurados en el directorio `./conf`.
-3. Inicia los contenedores:
+1. Clone the repository and navigate to the directory where the `docker-compose.yml` file is located.
+2. Ensure that the configuration files (`.env`) mentioned are correctly configured in the `./conf` directory.
+3. Start the containers:
    ```bash
    docker-compose up -d
    ```
-4. Verifica el estado de los servicios accediendo a los puertos expuestos a través de tu navegador:
+4. Check the status of the services by accessing the exposed ports via your browser:
 
    - **Namenode**: [http://localhost:9870](http://localhost:9870)
    - **Datanode-1**: [http://localhost:9864](http://localhost:9864)
@@ -41,15 +41,15 @@ Este repositorio contiene un archivo `docker-compose.yml` que despliega un clús
    - **ResourceManager**: [http://localhost:8088](http://localhost:8088)
    - **NodeManager**: [http://localhost:8042](http://localhost:8042)
    - **HistoryServer**: [http://localhost:8188](http://localhost:8188)
-   - **HiveServer**: [http://localhost:10000](http://localhost:10000) (y también en [http://localhost:10002](http://localhost:10002))
+   - **HiveServer**: [http://localhost:10000](http://localhost:10000) (and also at [http://localhost:10002](http://localhost:10002))
 
-También puedes ejecutar: 
+You can also run:
 
 ```bash
 docker-compose ps
 ```
 
-para ver algo como ésto:
+to see something like this:
 
 ```bash
 NAME              IMAGE                                           COMMAND                  SERVICE           CREATED          STATUS                    PORTS
@@ -64,208 +64,215 @@ nodemanager       timveil/docker-hadoop-nodemanager:3.2.x         "/entrypoint.s
 resourcemanager   timveil/docker-hadoop-resourcemanager:3.2.x     "/entrypoint.sh /run…"   resourcemanager   13 minutes ago   Up 13 minutes (healthy)   0.0.0.0:8088->8088/tcp
 ```
 
-Es importante que los servicios `namenode`, `datanode`, y `resourcemanager` estén funcionando correctamente antes de ejecutar tareas en el clúster.
+It is important that the `namenode`, `datanode`, and `resourcemanager` services are working correctly before running tasks on the cluster.
 
-# Servicios
+# Services
 
 ## 1. **Namenode**
-- **Imagen:** `timveil/docker-hadoop-namenode:3.2.x`
-- **Descripción:**
-  - El NameNode es el maestro del clúster Hadoop. Administra el sistema de archivos distribuido (HDFS) y mantiene el directorio jerárquico de archivos.
-- **Puertos expuestos:**
-  - `9870`: Interfaz web para monitoreo del HDFS.
-- **Volúmenes:**
-  - `./shared:/shared`: Carpeta compartida entre los servicios.
-- **Variables de entorno:**
-  - `CLUSTER_NAME`: Nombre del clúster.
-  - Archivos de configuración: `core.env`, `yarn-remote.env`.
+- **Image:** `timveil/docker-hadoop-namenode:3.2.x`
+- **Description:**
+  - The NameNode is the master of the Hadoop cluster. It manages the distributed file system (HDFS) and maintains the hierarchical directory of files.
+- **Exposed Ports:**
+  - `9870`: Web interface for HDFS monitoring.
+- **Volumes:**
+  - `./shared:/shared`: Shared folder between services.
+- **Environment Variables:**
+  - `CLUSTER_NAME`: Cluster name.
+  - Configuration files: `core.env`, `yarn-remote.env`.
 - **URL:**
   - [http://localhost:9870](http://localhost:9870)
 
 ---
 
 ## 2. **Datanode-1**
-- **Imagen:** `timveil/docker-hadoop-datanode:3.2.x`
-- **Descripción:**
-  - El DataNode almacena los bloques de datos del sistema de archivos HDFS y realiza la lectura y escritura de datos.
-- **Puertos expuestos:**
-  - `9864`: Puerto para la comunicación con el NameNode.
-- **Volúmenes:**
-  - No tiene volúmenes expuestos.
-- **Variables de entorno:**
-  - `SERVICE_PRECONDITION`: Indica que el NameNode debe estar disponible.
-  - Archivos de configuración: `core.env`, `yarn-remote.env`.
+- **Image:** `timveil/docker-hadoop-datanode:3.2.x`
+- **Description:**
+  - The DataNode stores the HDFS data blocks and performs data read and write operations.
+- **Exposed Ports:**
+  - `9864`: Port for communication with the NameNode.
+- **Volumes:**
+  - No exposed volumes.
+- **Environment Variables:**
+  - `SERVICE_PRECONDITION`: Indicates that the NameNode must be available.
+  - Configuration files: `core.env`, `yarn-remote.env`.
 - **URL:**
   - [http://localhost:9864](http://localhost:9864)
 
 ---
 
 ## 3. **Datanode-2**
-- **Imagen:** `timveil/docker-hadoop-datanode:3.2.x`
-- **Descripción:**
-  - Similar al DataNode-1, este nodo almacena bloques de datos y realiza operaciones de lectura y escritura en HDFS.
-- **Puertos expuestos:**
-  - `9865`: Puerto para la comunicación con el NameNode.
-- **Volúmenes:**
-  - No tiene volúmenes expuestos.
-- **Variables de entorno:**
-  - `SERVICE_PRECONDITION`: Indica que el NameNode debe estar disponible.
-  - Archivos de configuración: `core.env`, `yarn-remote.env`.
+- **Image:** `timveil/docker-hadoop-datanode:3.2.x`
+- **Description:**
+  - Similar to DataNode-1, this node stores data blocks and performs read and write operations in HDFS.
+- **Exposed Ports:**
+  - `9865`: Port for communication with the NameNode.
+- **Volumes:**
+  - No exposed volumes.
+- **Environment Variables:**
+  - `SERVICE_PRECONDITION`: Indicates that the NameNode must be available.
+  - Configuration files: `core.env`, `yarn-remote.env`.
 - **URL:**
   - [http://localhost:9865](http://localhost:9865)
 
 ---
 
 ## 4. **ResourceManager**
-- **Imagen:** `timveil/docker-hadoop-resourcemanager:3.2.x`
-- **Descripción:**
-  - El ResourceManager gestiona los recursos de cómputo en el clúster Hadoop y coordina la ejecución de aplicaciones en el clúster.
-- **Puertos expuestos:**
-  - `8088`: Interfaz web para monitoreo y gestión de trabajos en YARN.
-- **Volúmenes:**
-  - No tiene volúmenes expuestos.
-- **Variables de entorno:**
-  - `SERVICE_PRECONDITION`: Indica que el NameNode y los DataNodes deben estar disponibles.
-  - Archivos de configuración: `core.env`, `yarn-resource-manager.env`.
+- **Image:** `timveil/docker-hadoop-resourcemanager:3.2.x`
+- **Description:**
+  - The ResourceManager manages computing resources in the Hadoop cluster and coordinates the execution of applications on the cluster.
+- **Exposed Ports:**
+  - `8088`: Web interface for monitoring and managing jobs in YARN.
+- **Volumes:**
+  - No exposed volumes.
+- **Environment Variables:**
+  - `SERVICE_PRECONDITION`: Indicates that the NameNode and DataNodes must be available.
+  - Configuration files: `core.env`, `yarn-resource-manager.env`.
 - **URL:**
   - [http://localhost:8088](http://localhost:8088)
 
 ---
 
 ## 5. **NodeManager**
-- **Imagen:** `timveil/docker-hadoop-nodemanager:3.2.x`
-- **Descripción:**
-  - El NodeManager se ejecuta en cada nodo de trabajo y gestiona los recursos locales y la ejecución de aplicaciones en ese nodo.
-- **Puertos expuestos:**
-  - `8042`: Interfaz web para monitoreo del estado de los contenedores en YARN.
-- **Volúmenes:**
-  - No tiene volúmenes expuestos.
-- **Variables de entorno:**
-  - `SERVICE_PRECONDITION`: Indica que el NameNode, DataNodes y ResourceManager deben estar disponibles.
-  - Archivos de configuración: `core.env`, `yarn-node-manager.env`.
+- **Image:** `timveil/docker-hadoop-nodemanager:3.2.x`
+- **Description:**
+  - The NodeManager runs on each worker node and manages local resources and application execution on that node.
+- **Exposed Ports:**
+  - `8042`: Web interface for monitoring container status in YARN.
+- **Volumes:**
+  - No exposed volumes.
+- **Environment Variables:**
+  - `SERVICE_PRECONDITION`: Indicates that the NameNode, DataNodes, and ResourceManager must be available.
+  - Configuration files: `core.env`, `yarn-node-manager.env`.
 - **URL:**
   - [http://localhost:8042](http://localhost:8042)
 
 ---
 
 ## 6. **HistoryServer**
-- **Imagen:** `timveil/docker-hadoop-historyserver:3.2.x`
-- **Descripción:**
-  - El HistoryServer permite la visualización de la información de trabajos anteriores en el clúster Hadoop.
-- **Puertos expuestos:**
-  - `8188`: Interfaz web para visualizar el historial de trabajos en YARN.
-- **Volúmenes:**
-  - No tiene volúmenes expuestos.
-- **Variables de entorno:**
-  - `SERVICE_PRECONDITION`: Indica que el NameNode, DataNodes y ResourceManager deben estar disponibles.
-  - Archivos de configuración: `core.env`, `yarn-timeline.env`.
+- **Image:** `timveil/docker-hadoop-historyserver:3.2.x`
+- **Description:**
+  - The HistoryServer allows viewing information about past jobs in the Hadoop cluster.
+- **Exposed Ports:**
+  - `8188`: Web interface to view the job history in YARN.
+- **Volumes:**
+  - No exposed volumes.
+- **Environment Variables:**
+  - `SERVICE_PRECONDITION`: Indicates that the NameNode, DataNodes, and ResourceManager must be available.
+  - Configuration files: `core.env`, `yarn-timeline.env`.
 - **URL:**
   - [http://localhost:8188](http://localhost:8188)
 
 ---
 
 ## 7. **HiveServer**
-- **Imagen:** `timveil/docker-hadoop-hive-hs2:3.1.x`
-- **Descripción:**
-  - El HiveServer2 permite la interacción con Apache Hive para ejecutar consultas SQL en Hadoop.
-- **Puertos expuestos:**
-  - `10000`: Puerto para la interfaz HiveServer2.
-  - `10002`: Puerto para la interfaz HiveServer2 (puede ser utilizado por clientes de diferentes aplicaciones).
-- **Volúmenes:**
-  - `./shared:/shared`: Carpeta compartida entre los servicios.
-- **Variables de entorno:**
-  - `SERVICE_PRECONDITION`: Indica que el metastore debe estar disponible.
-  - Archivos de configuración: `core.env`, `yarn-remote.env`, `hive.env`.
+- **Image:** `timveil/docker-hadoop-hive-hs2:3.1.x`
+- **Description:**
+  - HiveServer2 allows interaction with Apache Hive to execute SQL queries on Hadoop.
+- **Exposed Ports:**
+  - `10000`: Port for the HiveServer2 interface.
+  - `10002`: Port for the HiveServer2 interface (can be used by clients from different applications).
+- **Volumes:**
+  - `./shared:/shared`: Shared folder between services.
+- **Environment Variables:**
+  - `SERVICE_PRECONDITION`: Indicates that the metastore must be available.
+  - Configuration files: `core.env`, `yarn-remote.env`, `hive.env`.
 - **URL:**
-  - [http://localhost:10000](http://localhost:10000) y [http://localhost:10002](http://localhost:10002)
+  - [http://localhost:10000](http://localhost:10000) and [http://localhost:10002](http://localhost:10002)
 
 ---
 
 ## 8. **Metastore**
-- **Imagen:** `timveil/docker-hadoop-hive-metastore:3.1.x`
-- **Descripción:**
-  - El Metastore de Hive almacena los metadatos de las tablas y bases de datos de Hive.
-- **Puertos expuestos:**
-  - No tiene puertos HTTP expuestos directamente.
-- **Volúmenes:**
-  - `./shared:/shared`: Carpeta compartida entre los servicios.
-- **Variables de entorno:**
-  - `SERVICE_PRECONDITION`: Indica que el NameNode, DataNodes y Metastore DB deben estar disponibles.
-  - Archivos de configuración: `core.env`, `yarn-remote.env`, `hive.env`, `metastore.env`.
+- **Image:** `timveil/docker-hadoop-hive-metastore:3.1.x`
+- **Description:**
+  - The Hive Metastore stores metadata for Hive tables and databases.
+- **Exposed Ports:**
+  - No direct HTTP ports exposed.
+- **Volumes:**
+  - `./shared:/shared`: Shared folder between services.
+- **Environment Variables:**
+  - `SERVICE_PRECONDITION`: Indicates that the NameNode, DataNodes, and Metastore DB must be available.
+  - Configuration files: `core.env`, `yarn-remote.env`, `hive.env`, `metastore.env`.
 - **URL:**
-  - No tiene un enlace web expuesto directamente.
+  - No direct web link exposed.
 
 ---
 
 ## 9. **Metastore DB**
-- **Imagen:** `timveil/docker-hadoop-hive-metastore-db:3.1.x`
-- **Descripción:**
-  - La base de datos de Metastore almacena los metadatos de Hive.
-- **Puertos expuestos:**
-  - `5432`: Puerto para la base de datos PostgreSQL.
-- **Volúmenes:**
-  - `./shared:/shared`: Carpeta compartida entre los servicios.
-- **Variables de entorno:**
-  - No tiene variables de entorno específicas de la interfaz web.
+- **Image:** `timveil/docker-hadoop-hive-metastore-db:3.1.x`
+- **Description:**
+  - The Metastore database stores metadata for Hive.
+- **Exposed Ports:**
+  - `5432`: Port for the PostgreSQL database.
+- **Volumes:**
+  - `./shared:/shared`: Shared folder between services.
+- **Environment Variables:**
+  - No specific web interface environment variables.
 - **URL:**
-  - No tiene un enlace web expuesto directamente.
+  - No direct web link exposed.
 
+---
 
-# PRUEBAS
+# TESTING
 
-## Ejecución de Mapreduce
+## Running Mapreduce
 
-Conectados al resourcemanager:
+Connected to the ResourceManager:
 
 ```bash
-# Vamos al directorio compartido
+# Navigate to the shared directory
 cd /shared
-# Damos permisos de ejecución al archivo
+# Grant execution permissions to the file
 chmod +x test-mapreduce.sh
-# Ejecutamos el archivo
+# Run the file
 ./test-mapreduce.sh
 ```
 
-## Ejecución de Hive
+## Running Hive
 
-Conectados al hiveserver:
+Connected to the HiveServer:
 
 ```bash
-# Vamos al directorio compartido
+# Navigate to the shared directory
 cd /shared
-# Damos permisos de ejecución al archivo
+# Grant execution permissions to the file
 chmod +x test-mapreduce.sh
-# Ejecutamos el archivo
+# Run the file
 ./test-mapreduce.sh
 ```
+
+---
 
 # TO-DO
 
-El anterior stack tiene puntos de mejora pendientes:
+The previous stack has pending improvement points:
 
-- Actualizar versiones de Hadoop, Java, Hive.
-- Añadir Spark
-- Persistir datos
+- Update Hadoop, Java, Hive versions.
+- Add Spark.
+- Persist data.
 
-# Créditos
-Este clúster utiliza imágenes Docker mantenidas por [Tim Veil](https://hub.docker.com/u/timveil).
+---
 
-# Enlaces
+# Credits
+This cluster uses Docker images maintained by [Tim Veil](https://hub.docker.com/u/timveil).
 
-## Creación de Imágenes con Docker
+---
+
+# Links
+
+## Building Docker Images
 
 - https://desarrollofront.medium.com/las-10-instrucciones-imprescindibles-para-crear-un-dockerfile-bb439ff836d9
 
-## Puertos de Hadoop:
+## Hadoop Ports:
 
 - https://www.stefaanlippens.net/hadoop-3-default-ports.html
 
-## Paso a Paso
+## Step by Step
 
 - https://www.writecode.es/2019-02-25-cluster_hadoop_docker/
 - https://www.writecode.es/2019-03-08-cluster-hadoop-hive-docker/
 - https://www.writecode.es/2019-04-30-cluster-hadoop-spark-docker/
 
-## Curso Completo
+## Complete Course
 
 - https://www.youtube.com/watch?v=CV_Uf3Dq-EU

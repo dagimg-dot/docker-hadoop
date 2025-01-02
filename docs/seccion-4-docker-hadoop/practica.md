@@ -1,36 +1,36 @@
-# Práctica 4. Stack de Hadoop + Hive
+# Practice 4: Hadoop + Hive Stack
 
-## Arrancar el stack
+## Start the stack
 
-Abrir un terminal y posicionarnos en el directorio raíz del repositorio. Lanzamos un:
+Open a terminal, navigate to the root directory of the repository, and run:
 
 ```bash
 docker-compose up -d
 ```
 
-## Comprobar en Docker Desktop que los servicios están corriendo
+## Check in Docker Desktop that the services are running
 
-En Docker Desktop, abrimos el interfaz principal y vemos los servicios corriendo.
+In Docker Desktop, open the main interface and confirm the services are running.
 
-Dentro de cada servicio podemos ver los logs, las variables de entorno y los archivos.
+Within each service, you can view logs, environment variables, and files.
 
-## Ver la interfaz principal de Hadoop
+## View the main Hadoop interface
 
-Abrimos un navegador y vamos a: (http://localhost:9870)[http://localhost:9870].
+Open a browser and go to [http://localhost:9870](http://localhost:9870).
 
-Comprobar el numero de datanodes que tiene el cluster.
+Check the number of datanodes in the cluster.
 
-## Parar el Stack
+## Stop the stack
 
-Paramos el stack con:
+Stop the stack with:
 
 ```bash
 docker-compose stop
 ```
 
-## Añadimos un nuevo datanode
+## Add a new datanode
 
-Hay que editar el archivo `docker-compose.yml` y debajo del servicio `datanode-2` añadimos:
+Edit the `docker-compose.yml` file and, below the `datanode-2` service, add the following:
 
 ```bash
 datanode-3:
@@ -48,23 +48,23 @@ datanode-3:
     - hadoop_network
 ```
 
-## Arrancar el Stack
+## Start the stack
 
-Paramos el stack con:
+Restart the stack with:
 
 ```bash
 docker-compose start
 ```
 
-## Ver la interfaz principal de Hadoop
+## View the main Hadoop interface
 
-Abrimos un navegador y vamos a: (http://localhost:9870)[http://localhost:9870].
+Open a browser and go to [http://localhost:9870](http://localhost:9870).
 
-Comprobar el numero de datanodes que tiene el cluster.
+Check the number of datanodes in the cluster.
 
-## Parar el Stack
+## Stop the stack
 
-Paramos el stack con:
+Stop the stack with:
 
 ```bash
 docker-compose stop
