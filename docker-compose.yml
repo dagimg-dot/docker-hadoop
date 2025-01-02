@@ -1,5 +1,4 @@
 services:
-
   namenode:
     image: timveil/docker-hadoop-namenode:3.2.x
     container_name: namenode
@@ -29,7 +28,7 @@ services:
       - "9864:9864"
     networks:
       - hadoop_network
-  
+
   datanode-2:
     image: timveil/docker-hadoop-datanode:3.2.x
     container_name: datanode-2
@@ -127,7 +126,7 @@ services:
     container_name: metastore-db
     hostname: metastore-db
     ports:
-      - "5432:5432"
+      - "5433:5432" # Used 5433 here because 5432 is used by postgresql in the host machine
     volumes:
       - shared-data:/shared
     networks:
