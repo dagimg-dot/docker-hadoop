@@ -20,10 +20,15 @@ This repository contains a `docker-compose.yml` file that deploys a complete Had
 - [TO-DO](#to-do)
 - [Credits](#credits)
 - [Links](#links)
-  - [Building Docker Images](#building-docker-images)
   - [Hadoop Ports](#hadoop-ports)
-    - [Step by Step](#step-by-step)
-  - [Complete Course](#complete-course)
+  - [Complete Course](#courses-for-docker)
+
+# Before You Start
+
+- If you are new to Docker you can install it by following the instructions in the [Docker Documentation](https://docs.docker.com/get-docker/).
+
+- Once you have Docker installed, you can
+  go to `/docs` and practice each section. For further information, you can visit the [Docker Documentation](https://docs.docker.com/).
 
 # How to Use This File
 
@@ -69,6 +74,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 # Services
 
 ## 1. **Namenode**
+
 - **Image:** `timveil/docker-hadoop-namenode:3.2.x`
 - **Description:**
   - The NameNode is the master of the Hadoop cluster. It manages the distributed file system (HDFS) and maintains the hierarchical directory of files.
@@ -85,6 +91,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 ---
 
 ## 2. **Datanode-1**
+
 - **Image:** `timveil/docker-hadoop-datanode:3.2.x`
 - **Description:**
   - The DataNode stores the HDFS data blocks and performs data read and write operations.
@@ -101,6 +108,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 ---
 
 ## 3. **Datanode-2**
+
 - **Image:** `timveil/docker-hadoop-datanode:3.2.x`
 - **Description:**
   - Similar to DataNode-1, this node stores data blocks and performs read and write operations in HDFS.
@@ -117,6 +125,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 ---
 
 ## 4. **ResourceManager**
+
 - **Image:** `timveil/docker-hadoop-resourcemanager:3.2.x`
 - **Description:**
   - The ResourceManager manages computing resources in the Hadoop cluster and coordinates the execution of applications on the cluster.
@@ -133,6 +142,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 ---
 
 ## 5. **NodeManager**
+
 - **Image:** `timveil/docker-hadoop-nodemanager:3.2.x`
 - **Description:**
   - The NodeManager runs on each worker node and manages local resources and application execution on that node.
@@ -149,6 +159,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 ---
 
 ## 6. **HistoryServer**
+
 - **Image:** `timveil/docker-hadoop-historyserver:3.2.x`
 - **Description:**
   - The HistoryServer allows viewing information about past jobs in the Hadoop cluster.
@@ -165,6 +176,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 ---
 
 ## 7. **HiveServer**
+
 - **Image:** `timveil/docker-hadoop-hive-hs2:3.1.x`
 - **Description:**
   - HiveServer2 allows interaction with Apache Hive to execute SQL queries on Hadoop.
@@ -182,6 +194,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 ---
 
 ## 8. **Metastore**
+
 - **Image:** `timveil/docker-hadoop-hive-metastore:3.1.x`
 - **Description:**
   - The Hive Metastore stores metadata for Hive tables and databases.
@@ -198,6 +211,7 @@ It is important that the `namenode`, `datanode`, and `resourcemanager` services 
 ---
 
 ## 9. **Metastore DB**
+
 - **Image:** `timveil/docker-hadoop-hive-metastore-db:3.1.x`
 - **Description:**
   - The Metastore database stores metadata for Hive.
@@ -235,44 +249,35 @@ Connected to the HiveServer:
 # Navigate to the shared directory
 cd /shared
 # Grant execution permissions to the file
-chmod +x test-mapreduce.sh
+chmod +x test-hive.sh
 # Run the file
-./test-mapreduce.sh
+./test-hive.sh
 ```
 
 ---
 
 # TO-DO
 
-The previous stack has pending improvement points:
-
-- Update Hadoop, Java, Hive versions.
-- Add Spark.
-- Persist data.
+- ⌛ Update Hadoop, Java, Hive versions.
+- ⌛ Add Spark.
+- ⌛ Persist data.
 
 ---
 
 # Credits
-This cluster uses Docker images maintained by [Tim Veil](https://hub.docker.com/u/timveil).
+
+- This cluster uses Docker images maintained by [Tim Veil](https://hub.docker.com/u/timveil).
+- This repository is based on the work of [meencantaesto](https://github.com/meencantaesto/docker-hadoop.git)
 
 ---
 
 # Links
 
-## Building Docker Images
-
-- https://desarrollofront.medium.com/las-10-instrucciones-imprescindibles-para-crear-un-dockerfile-bb439ff836d9
-
 ## Hadoop Ports:
 
 - https://www.stefaanlippens.net/hadoop-3-default-ports.html
 
-## Step by Step
+## Courses For Docker
 
-- https://www.writecode.es/2019-02-25-cluster_hadoop_docker/
-- https://www.writecode.es/2019-03-08-cluster-hadoop-hive-docker/
-- https://www.writecode.es/2019-04-30-cluster-hadoop-spark-docker/
-
-## Complete Course
-
-- https://www.youtube.com/watch?v=CV_Uf3Dq-EU
+- https://www.youtube.com/watch?v=RqTEHSBrYFw (Long)
+- https://www.youtube.com/watch?v=eGz9DS-aIeY (Short)
