@@ -1,6 +1,6 @@
 transaction_id,customer_name,product,quantity,price,transaction_date
-1,John Doe,Laptop,1,1000,2023-11-01
-2,Jane Smith,Mouse,2,25,2023-11-02
-3,Tom Hardy,Keyboard,1,45,2023-11-02
-4,Lisa Ray,Laptop,1,1000,2023-11-03
-5,John Doe,Monitor,1,200,2023-11-04
+1,Dagim Gizachew,Laptop,1,1000,2023-11-01
+2,Ermias Sintayehu,Mouse,2,25,2023-11-02
+3,Nathnael Tewodros,Keyboard,1,45,2023-11-02
+4,Abebe Chala,Laptop,1,1000,2023-11-03
+5,Zara Medanit,Monitor,1,200,2023-11-04
